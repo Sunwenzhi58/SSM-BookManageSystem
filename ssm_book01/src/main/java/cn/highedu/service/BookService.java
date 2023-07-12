@@ -30,4 +30,5 @@ public interface BookService {
     public List<Book> findAll();
 
 
+    public List<Book> getByName(String name);
 }

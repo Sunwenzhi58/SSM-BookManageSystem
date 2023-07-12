@@ -4,6 +4,7 @@ import cn.highedu.entity.Book;
 import cn.highedu.service.BookService;
 import cn.highedu.util.Code;
 import cn.highedu.util.ResultUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,13 @@ public class BookController {
         Integer code = book !=null ? Code.GET_OK:Code.GET_ERROR;
         String message = book !=null ? "":"数据查询失败";
         return new ResultUtil(code,book,message);
+    }
+    @GetMapping("/name/{name}")
+    public ResultUtil getByName(@PathVariable String name){
+        List<Book> bookList = bookService.getByName(name);
+        Integer code = bookList !=null ? Code.GET_OK:Code.GET_ERROR;
+        String message = bookList !=null ? "":"数据查询失败";
+        return new ResultUtil(code,bookList,message);
     }
     @GetMapping
     public ResultUtil findAll(){

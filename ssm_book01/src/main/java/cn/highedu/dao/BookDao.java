@@ -24,4 +24,6 @@ public interface BookDao {
     @Select("select * from t_book")
     public List<Book> findAll();
 
+    @Select("select * from t_book where name like CONCAT('%', #{name}, '%')")
+    public List<Book> getByName(String name);
 }
